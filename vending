@@ -24,21 +24,21 @@ class VendingMachine:
        
         print("Available items:")
         for item, price in self.items.items():
-            print(f"{item.capitalize()}: ${price:.2f}")
+            print(f"{item.capitalize()}: AED{price:.2f}")
 
      def display_balance(self):
-        print(f"Current balance: ${self.balance:.2f}")
+        print(f"Current balance: AED{self.balance:.2f}")
 
      def insert_coin(self, amount):
         self.balance += amount
-        print(f"Inserted ${amount:.2f}. Current balance: ${self.balance:.2f}")
+        print(f"Inserted AED{amount:.2f}. Current balance: AED{self.balance:.2f}")
 
      def select_item(self, item):
         if item in self.items:
             price = self.items[item]
             if self.balance >= price:
                 self.balance -= price
-                print(f"Dispensing {item.capitalize()}. Remaining balance: ${self.balance:.2f}")
+                print(f"Dispensing {item.capitalize()}. Remaining balance: AED{self.balance:.2f}")
             else:
                 print("Insufficient funds. Please insert more coins.")
         else:
@@ -63,7 +63,7 @@ if __name__ == "__main__":
             vending_machine.display_items()
         elif choice == '2':
             try:
-                amount = float(input("Enter the amount to insert: $"))
+                amount = float(input("Enter the amount to insert: AED"))
                 vending_machine.insert_coin(amount)
             except ValueError:
                 print("Invalid input. Please enter a valid amount.")
@@ -73,7 +73,7 @@ if __name__ == "__main__":
         elif choice == '4':
             vending_machine.display_balance()
         elif choice == '5':
-            print("Exiting the vending machine. Thank you!")
+            print("Thank you for using Vending Machine, Have a great day!")
             break
         else:
             print("Invalid choice. Please enter a number between 1 and 5.")
