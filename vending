@@ -1,0 +1,79 @@
+class VendingMachine:
+     print("𝔀𝓮𝓵𝓬𝓸𝓶𝓮 𝓽𝓸 𝓫𝓪𝓼𝓲𝓶❜𝓼 𝓿𝓮𝓷𝓭𝓲𝓷𝓰 𝓶𝓪𝓬𝓱𝓲𝓷𝓮")
+     def __init__(self):
+        self.items = {
+            'cola': 1.50,
+            'chips': 1.00,
+            'candy': 0.75,
+            'cake': 5.00,
+            'jelly':6.00,
+            'icecream':10.00,
+            'chocolate': 4.00,
+            'sandwich':7.00,
+            '7up':1.50,
+            'cocacola': 1.50,
+            'mountain dew':1.50,
+            'mango juice':1.50,
+            'orange juice':1.50,
+            'apple juice':1.50
+        }
+        
+        self.balance = 0.0
+
+     def display_items(self):
+       
+        print("Available items:")
+        for item, price in self.items.items():
+            print(f"{item.capitalize()}: ${price:.2f}")
+
+     def display_balance(self):
+        print(f"Current balance: ${self.balance:.2f}")
+
+     def insert_coin(self, amount):
+        self.balance += amount
+        print(f"Inserted ${amount:.2f}. Current balance: ${self.balance:.2f}")
+
+     def select_item(self, item):
+        if item in self.items:
+            price = self.items[item]
+            if self.balance >= price:
+                self.balance -= price
+                print(f"Dispensing {item.capitalize()}. Remaining balance: ${self.balance:.2f}")
+            else:
+                print("Insufficient funds. Please insert more coins.")
+        else:
+            print("Invalid item selection. Please choose a valid item.")
+
+def display_menu():
+    print("\nMenu:")
+    print("1. Display Items")
+    print("2. Insert Coin")
+    print("3. Select Item")
+    print("4. Check Balance")
+    print("5. Exit")
+
+if __name__ == "__main__":
+    vending_machine = VendingMachine()
+
+    while True:
+        display_menu()
+        choice = input("Enter your choice (1-5): ")
+
+        if choice == '1':
+            vending_machine.display_items()
+        elif choice == '2':
+            try:
+                amount = float(input("Enter the amount to insert: $"))
+                vending_machine.insert_coin(amount)
+            except ValueError:
+                print("Invalid input. Please enter a valid amount.")
+        elif choice == '3':
+            item = input("Enter the item you want to select: ").lower()
+            vending_machine.select_item(item)
+        elif choice == '4':
+            vending_machine.display_balance()
+        elif choice == '5':
+            print("Exiting the vending machine. Thank you!")
+            break
+        else:
+            print("Invalid choice. Please enter a number between 1 and 5.")
